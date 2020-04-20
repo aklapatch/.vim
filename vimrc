@@ -1,7 +1,8 @@
 if has('unix')
     set shell=bash
 endif
-set number relativenumber
+
+set number
 
 set nocompatible              " be iMproved, required
 
@@ -11,12 +12,12 @@ filetype off                  " required
 "
 call plug#begin('~/.vim/plugged')
 Plug 'szw/vim-dict'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-notes'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-scripts/AutoComplPop'
 
+Plug 'tpope/vim-sensible'
 Plug 'flazz/vim-colorschemes'
-
+Plug 'jnurmine/Zenburn'
 Plug 'nathanaelkane/vim-indent-guides'
 
 Plug 'tpope/vim-surround'
@@ -29,11 +30,9 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'majutsushi/tagbar'
 
-" a bunch of language plugins
-Plug 'sheerun/vim-polyglot'  
+" vim-polyglot is slow
+"Plug 'sheerun/vim-polyglot'  
 Plug 'ziglang/zig.vim'
-
-"Plug 'ervandew/supertab'
 
 Plug 'vim-airline/vim-airline-themes'
 
@@ -73,7 +72,7 @@ set wildmenu
 command! MakeTags !ctags -R .
 
 " add vim dictionary
-set dictionary+=~/nvim/words
+set dictionary+=~/.vim/words
 
 set t_Co=256
 
@@ -117,19 +116,8 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 " :e a folder to open a file browser
 " <CR>/v/t to open in an h-split/v-split/tab
 " |netrw-browse-maps| has more mappings
-"
 
 set showcmd
-
-" SNIPPETS
-" This would insert the template into the file
-"nnoremap ,html :-lread $HOME/.vim/.skeleton.html<CR>3jwf>a
-
-" BUILD INTEGRATIO
-" configure make to run Rspec
-" bundle exec rspec --format QuickFormatter
-"set makrprg=bundle\ exec\ rspec\ --format\ QuickFormatter
-"
 
 " nerdcommenter settings ==============================
 " Add spaces after comment delimiters by default
@@ -140,7 +128,6 @@ let g:NERDCompactSexyComs = 1
 
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
-
 
 " Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
@@ -162,7 +149,7 @@ set shiftwidth=4
 set expandtab
 set autoindent
 
-" Theme
+" leave this to enable only if you do not run vim-polyglot
 syntax enable
 colorscheme zenburn 
 
@@ -223,8 +210,9 @@ set shortmess+=c
 set signcolumn=yes
 
 " completion options
-set completeopt=noinsert,menuone,preview
-set complete=t,i,d,k,w,b,u,U,.
+set completeopt=menuone,preview
+set complete=.,b,u,]
+set wildmode=longest,list:longest
 
 " nerdtree settings =======================================
 map <C-n> :NERDTreeToggle<CR>
