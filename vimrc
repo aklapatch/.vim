@@ -1,7 +1,4 @@
-
-
 if has('unix')
-
     set shell=bash
 endif
 set number relativenumber
@@ -18,6 +15,10 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'vim-scripts/AutoComplPop'
 
+Plug 'flazz/vim-colorschemes'
+
+Plug 'nathanaelkane/vim-indent-guides'
+
 Plug 'tpope/vim-surround'
 
 Plug 'mattn/emmet-vim'
@@ -28,8 +29,6 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'majutsushi/tagbar'
 
-" Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
-Plug 'sakhnik/nvim-gdb', { 'branch': 'legacy' }
 " a bunch of language plugins
 Plug 'sheerun/vim-polyglot'  
 Plug 'ziglang/zig.vim'
@@ -38,7 +37,6 @@ Plug 'ziglang/zig.vim'
 
 Plug 'vim-airline/vim-airline-themes'
 
-" tpope plugins
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sensible'
@@ -51,19 +49,15 @@ Plug 'bling/vim-airline'
 
 Plug 'frazrepo/vim-rainbow'
 
-Plug 'neomake/neomake'
-
 Plug 'easymotion/vim-easymotion'
 
 Plug 'djoshea/vim-autoread'
 
-Plug 'morhetz/gruvbox'
 call plug#end()            " required
 
-filetype plugin indent on    " required
+let g:indent_guides_enable_on_vim_startup = 1
 
-" gruvbox settings
-set background=dark
+filetype plugin indent on    " required
 
 " this is not vi
 set nocompatible
@@ -79,24 +73,21 @@ set wildmenu
 command! MakeTags !ctags -R .
 
 " add vim dictionary
-set dictionary+=~/.vim/words
+set dictionary+=~/nvim/words
+
+set t_Co=256
 
 nnoremap <f10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
-"
-" neomake settings ================================
-"call neomake#configure#automake('nrwi', 500)
 
 " easymotion settings =================================
-" Gif config
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
-
 
 " <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
@@ -105,7 +96,6 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 " s{char}{char} to move to {char}{char}
 nmap s <Plug>(easymotion-overwin-f2)
 
-"
 " Move to line
 map <Leader>L <Plug>(easymotion-bd-jk)
 nmap <Leader>L <Plug>(easymotion-overwin-line)
@@ -174,18 +164,13 @@ set autoindent
 
 " Theme
 syntax enable
-colorscheme gruvbox 
+colorscheme zenburn 
 
 " rainbow delimiter settings ============================
 let g:rainbow_active = 1
 
-
 " get rid of insert text
 set noshowmode
-
-" colorscheme setting =================================
-" For Neovim 0.1.3 and 0.1.4
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " Or if you have Neovim >= 0.1.5
 if (has("termguicolors"))
@@ -238,15 +223,14 @@ set shortmess+=c
 set signcolumn=yes
 
 " completion options
-set completeopt=longest,menu,preview 
-set complete+=k
+set completeopt=noinsert,menuone,preview
+set complete=t,i,d,k,w,b,u,U,.
 
 " nerdtree settings =======================================
 map <C-n> :NERDTreeToggle<CR>
 
 " spell check ================================================
 set spell spelllang=en_us
-set complete+=k
 "
 " KEYBINDS
 "
