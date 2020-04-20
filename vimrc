@@ -11,7 +11,6 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 "
 call plug#begin('~/.vim/plugged')
-Plug 'szw/vim-dict'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-scripts/AutoComplPop'
 
@@ -20,7 +19,6 @@ Plug 'flazz/vim-colorschemes'
 Plug 'jnurmine/Zenburn'
 Plug 'nathanaelkane/vim-indent-guides'
 
-Plug 'tpope/vim-surround'
 
 Plug 'mattn/emmet-vim'
 
@@ -36,6 +34,7 @@ Plug 'ziglang/zig.vim'
 
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sensible'
