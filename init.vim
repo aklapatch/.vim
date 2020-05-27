@@ -7,18 +7,22 @@ set number
 set nocompatible              " be iMproved, required
 
 filetype off                  " required
-"
-" set the runtime path to include Vundle and initialize
-"
-call plug#begin('~/.vim/plugged')
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'vim-scripts/AutoComplPop'
 
+" set plugins to be installed near this config file (regardless of platform)
+let plugdir = expand('%:p') + '/plugged'
+
+call plug#begin(plugdir)
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'lifepillar/vim-mucomplete'
 Plug 'tpope/vim-sensible'
 Plug 'flazz/vim-colorschemes'
 Plug 'jnurmine/Zenburn'
 Plug 'nathanaelkane/vim-indent-guides'
 
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
 
 Plug 'mattn/emmet-vim'
 
@@ -66,6 +70,9 @@ set path+=**
 " Display matching files when you tab complete
 set wildmode=longest,list,full
 set wildmenu
+
+let g:mucomplete#chains = { 'default': ['snip','file', 'keyn', 'path', 'omni', 'dict'] } " For instance
+imap <expr> <c-s> (pumvisible()?"\<c-y>":"")."\<plug>snipMateNextOrTrigger"
 
 " tagging and jumping to tags
 command! MakeTags !ctags -R .
@@ -209,10 +216,15 @@ set shortmess+=c
 set signcolumn=yes
 
 " completion options
-set completeopt=menuone,preview
+set completeopt=menuone,preview,noinsert
 set complete=.,b,u,]
-set wildmode=longest,list:longest
+set wildmode=list:full
+let g:mucomplete#enable_auto_at_startup = 1
 
+let g:mucomplete#completion_delay = 100 
+let g:UltiSnipsExpandTrigger = '<C-r>'  " Use something different from <tab>
+let g:mucomplete#chains = {}
+let g:mucomplete#chains.default = ['ulti', 'path', 'omni', 'keyn', 'dict', 'uspl']
 " nerdtree settings =======================================
 map <C-n> :NERDTreeToggle<CR>
 
