@@ -1,7 +1,3 @@
-if has('unix')
-    set shell=bash
-endif
-
 set number
 
 set nocompatible              " be iMproved, required
@@ -9,7 +5,12 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set plugins to be installed near this config file (regardless of platform)
-let plugdir = expand('%:p') + '/plugged'
+if has('unix')
+    set shell=bash
+    let plugdir='~/.config/nvim/plugged'
+else
+    let plugdir='~/AppData/Local/nvim/plugged'
+endif
 
 call plug#begin(plugdir)
 Plug 'ctrlpvim/ctrlp.vim'
