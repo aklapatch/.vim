@@ -2,7 +2,7 @@ set number
 
 set nocompatible              " be iMproved, required
 
-filetype off                  " required
+filetype plugin indent on " required
 
 " set plugins to be installed near this config file (regardless of platform)
 if has('unix')
@@ -10,6 +10,7 @@ if has('unix')
     let plugdir='~/.config/nvim/plugged'
 else
     let plugdir='~/AppData/Local/nvim/plugged'
+    set dictionary+=~/AppData/Local/nvim/words
 endif
 
 call plug#begin(plugdir)
@@ -23,6 +24,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
+
 Plug 'honza/vim-snippets'
 
 Plug 'mattn/emmet-vim'
@@ -55,7 +57,7 @@ Plug 'frazrepo/vim-rainbow'
 Plug 'easymotion/vim-easymotion'
 
 Plug 'djoshea/vim-autoread'
-
+Plug 'jordwalke/AutoComplPop'
 call plug#end()            " required
 
 let g:indent_guides_enable_on_vim_startup = 1
@@ -72,14 +74,9 @@ set path+=**
 set wildmode=longest,list,full
 set wildmenu
 
-let g:mucomplete#chains = { 'default': ['snip','file', 'keyn', 'path', 'omni', 'dict'] } " For instance
-imap <expr> <c-s> (pumvisible()?"\<c-y>":"")."\<plug>snipMateNextOrTrigger"
 
 " tagging and jumping to tags
 command! MakeTags !ctags -R .
-
-" add vim dictionary
-set dictionary+=~/.vim/words
 
 set t_Co=256
 
@@ -171,7 +168,6 @@ if (has("termguicolors"))
  set termguicolors
 endif
 "
-
 " update the file when written ==========================
 set autoread
 au CursorHold * checktime
@@ -182,7 +178,8 @@ let g:airline#extensions#tabline#left_sep = '|'
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " set backspace to be normal =================================
-set backspace=indent,eol,start
+set backspace=2
+set ruler
 
 " Files and backups, swap files ================================
 set backupdir=~/.nvim-tmp,~/.tmp,/var/tmp,/tmp
@@ -208,21 +205,26 @@ set nowritebackup
 set cmdheight=2
 
 " You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
+set updatetime=1000
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
+
+" set completion menu height 
+set pumheight=10
 
 " always show sign columns
 set signcolumn=yes
 
 " completion options
-set completeopt=menuone,preview,noinsert
-set complete=.,b,u,]
+set completeopt-=preview
+set completeopt+=longest,menuone,noselect
+set complete=.,b,u,t,k
 set wildmode=list:full
-let g:mucomplete#enable_auto_at_startup = 1
+"let g:mucomplete#enable_auto_at_startup = 1
 
-let g:mucomplete#completion_delay = 100 
+imap <expr> <c-s> (pumvisible()?"\<c-y>":"")."\<plug>snipMateNextOrTrigger"
+let g:mucomplete#completion_delay = 50 
 let g:UltiSnipsExpandTrigger = '<C-r>'  " Use something different from <tab>
 let g:mucomplete#chains = {}
 let g:mucomplete#chains.default = ['ulti', 'path', 'omni', 'keyn', 'dict', 'uspl']
@@ -230,6 +232,7 @@ let g:mucomplete#chains.default = ['ulti', 'path', 'omni', 'keyn', 'dict', 'uspl
 map <C-n> :NERDTreeToggle<CR>
 
 " spell check ================================================
+set spell
 set spell spelllang=en_us
 "
 " KEYBINDS
