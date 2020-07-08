@@ -1,4 +1,5 @@
 g:gitgutter_async	gitgutter.txt	/*g:gitgutter_async*
+g:gitgutter_close_preview_on_escape	gitgutter.txt	/*g:gitgutter_close_preview_on_escape*
 g:gitgutter_diff_args	gitgutter.txt	/*g:gitgutter_diff_args*
 g:gitgutter_diff_base	gitgutter.txt	/*g:gitgutter_diff_base*
 g:gitgutter_diff_relative_to	gitgutter.txt	/*g:gitgutter_diff_relative_to*

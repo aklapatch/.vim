@@ -170,6 +170,12 @@ function! airline#extensions#load()
     call add(s:loaded_ext, 'netrw')
   endif
 
+  " fzf buffers are also terminal buffers, so this must be above term.
+  if exists(':FZF') && get(g:, 'airline#extensions#fzf#enabled', 1)
+    call airline#extensions#fzf#init(s:ext)
+    call add(s:loaded_ext, 'fzf')
+  endif
+
   if (has("terminal") || has('nvim')) &&
         \ get(g:, 'airline#extensions#term#enabled', 1)
     call airline#extensions#term#init(s:ext)
@@ -420,6 +426,11 @@ function! airline#extensions#load()
   if (get(g:, 'airline#extensions#cursormode#enabled', 0))
     call airline#extensions#cursormode#init(s:ext)
     call add(s:loaded_ext, 'cursormode')
+  endif
+
+  if get(g:, 'airline#extensions#searchcount#enabled', 1) && exists('*searchcount')
+    call airline#extensions#searchcount#init(s:ext)
+    call add(s:loaded_ext, 'searchcount')
   endif
 
   if !get(g:, 'airline#extensions#disable_rtp_load', 0)

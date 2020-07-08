@@ -35,6 +35,7 @@ airline-extensions	airline.txt	/*airline-extensions*
 airline-features	airline.txt	/*airline-features*
 airline-fugitiveline	airline.txt	/*airline-fugitiveline*
 airline-funcrefs	airline.txt	/*airline-funcrefs*
+airline-fzf	airline.txt	/*airline-fzf*
 airline-gina	airline.txt	/*airline-gina*
 airline-grepper	airline.txt	/*airline-grepper*
 airline-gutentags	airline.txt	/*airline-gutentags*
