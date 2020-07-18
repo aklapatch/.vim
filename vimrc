@@ -165,8 +165,8 @@ set backspace=2
 set ruler
 
 " Files and backups, swap files ================================
-set backupdir=~/.nvim-tmp,~/.tmp,/var/tmp,/tmp
-set directory=~/.nvim-tmp,~/.tmp,/var/tmp,/tmp
+set backupdir=~/.vim-tmp,~/.tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,/var/tmp,/tmp
 
 set laststatus=2
 
@@ -204,19 +204,16 @@ set completeopt-=preview
 set completeopt+=longest,menuone,noselect
 set complete=.,b,u,t,k
 set wildmode=list:full
-"let g:mucomplete#enable_auto_at_startup = 1
 
 imap <expr> <c-s> (pumvisible()?"\<c-y>":"")."\<plug>snipMateNextOrTrigger"
-let g:mucomplete#completion_delay = 50 
 let g:UltiSnipsExpandTrigger = '<C-r>'  " Use something different from <tab>
-let g:mucomplete#chains = {}
-let g:mucomplete#chains.default = ['ulti', 'path', 'omni', 'keyn', 'dict', 'uspl']
+"
 " nerdtree settings =======================================
 map <C-n> :NERDTreeToggle<CR>
 
 " spell check ================================================
+set spelllang=en_us
 set spell
-set spell spelllang=en_us
 "
 " KEYBINDS
 "
