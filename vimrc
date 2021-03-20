@@ -135,6 +135,7 @@ set autoindent
 
 " leave this to enable only if you do not run vim-polyglot
 syntax enable
+set background=light
 colorscheme gruvbox
 
 set listchars=tab:T>
