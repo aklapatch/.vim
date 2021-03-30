@@ -1,8 +1,9 @@
+
 set number
 
-set nocompatible              " be iMproved, required
+set nocompatible
 
-filetype plugin indent on " required
+filetype plugin indent on 
 
 " set plugins to be installed near this config file (regardless of platform)
 if has('unix')
@@ -22,7 +23,6 @@ Plug 'nathanaelkane/vim-indent-guides'
 
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
 
 Plug 'honza/vim-snippets'
 
@@ -75,7 +75,7 @@ set wildmenu
 
 
 " tagging and jumping to tags
-command! MakeTags !ctags -R .
+command! MakeTags !ctags -R *
 
 set t_Co=256
 
@@ -461,3 +461,4 @@ set spell
 "     <leader>cc - comment out current line in visual mode or selected text
 "     <leader>c<space> - Toggles the comment state fo the selected lines
 "     <leader>cs - Comments lines in a better looking block format
+
